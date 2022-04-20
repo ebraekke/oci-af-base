@@ -4,7 +4,7 @@
 ###########################################################################
 
 resource "oci_bastion_bastion" "bastion" {
-    name              = "habastion" 
+    name              = "${var.set_name}-bastion" 
 
     # Required
     bastion_type      = "standard"

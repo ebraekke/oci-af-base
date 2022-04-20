@@ -12,6 +12,7 @@ module "network" {
 module "bastion" {
     source              = "./modules/bastion"
     
+    set_name            = var.set_name
     compartment_ocid    = var.compartment_ocid
     subnet_ocid         = module.network.bastion_subnet_ocid
 }
