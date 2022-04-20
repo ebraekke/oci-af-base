@@ -1,0 +1,20 @@
+
+/*
+Create preauth URL for thsi (sub)project. 
+Fill inn the blanks below. 
+Create file called remoate_state.tf, will be excluded from source code control. 
+*/
+
+terraform {
+  backend "http" {
+    update_method = "PUT"
+    address = "<your-preauth-url-here>"
+  }
+}
+
+data "terraform_remote_state" "ha-mysql-innodb-cluster" {
+  backend = "http"
+  config = {
+    address = "<your-preauth-url-here>"
+  }
+}
