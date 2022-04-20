@@ -1,12 +1,21 @@
 
 ###########################################################################
-# OUTPUT ips & ocids
+# OUTPUTs
 ###########################################################################
 
 output "web_private_ips" {
-  value = oci_core_instance.instance_web.*.private_ip
+  value = module.web.web_private_ips
 }
 
 output "web_ocid_list" {
-  value = oci_core_instance.instance_web.*.id
+  value = module.web.web_ocid_list
 }
+
+output "db_private_ips" {
+  value = module.db.db_private_ips
+}
+
+output "db_ocid_list" {
+  value = module.db.db_ocid_list
+}
+

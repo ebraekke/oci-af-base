@@ -1,8 +1,4 @@
 
-# Input variables
-variable "vcn_cidr"           { default = "10.0.0.0/16" }
-variable "subnet_cidr_offset" { default = 8 }
-
 ###########################################################################
 # Used for naming output files and objects, incl. for ansible
 ###########################################################################
@@ -17,40 +13,42 @@ variable "web_count"        { default = "3" }
 variable "web_ocpus"        { default = "1" }
 variable "web_mem_per_ocpu" { default = "6" }
 
+variable "db_count"         { default = "1" }
+variable "db_ocpus"         { default = "1" }
+variable "db_mem_per_ocpu"  { default = "1" }
+
+variable "default_shape"    {}
+
 ###########################################################################
 # Details for VMs, ssh key vcn and subnet
 ###########################################################################
 variable "ssh_public_key"   {}
 
+variable "db_subnet_ocid"    {
+    description = "subnet for teh db tier"
+}
+variable "web_subnet_ocid"   {
+    description = "subnet for the web tier"
+}
+variable "lbr_subnet_ocid" {
+    description = "subnet for the lbr"
+}
+variable "vcn_ocid" {
+    description = "the vcn"
+}
+
+variable "super_user"       { default = "ubuntu" }
+
+variable "web_image_ocid"   {}
+variable "db_image_ocid"    {}
+
 ###########################################################################
 # Details related to account/identity (provider.tf)
 ###########################################################################
-variable "region"           { default = "eu-stockholm-1"}
+variable "region"           { default = "eu-frankfurt-1"}
 variable "tenancy_ocid"     {}
 variable "compartment_ocid" {}
 variable "user_ocid"        {}
 variable "fingerprint"      {}
 variable "private_key_path" {}
 
-# Set to your pref depending on OS, assumes same OS family (i.e. opc or ubuntu) 
-variable "super_user"       { default = "opc" }
-
-variable "default_shape"    {}
-variable "web_image_ocid"   {}
-
-variable "db_shapes_map"  {
-    type = map 
-    default = {
-        "1"  = "MySQL.VM.Standard.E3.1.16GB"
-        "2"  = "MySQL.VM.Standard.E3.2.32GB"
-        "4"  = "MySQL.VM.Standard.E3.4.64GB"
-        "8"  = "MySQL.VM.Standard.E3.8.128GB"
-        "16" = "MySQL.VM.Standard.E3.16.256GB"
-        "24" = "MySQL.VM.Standard.E3.24.384GB"
-        "32" = "MySQL.VM.Standard.E3.32.512GB"
-        "48" = "MySQL.VM.Standard.E3.48.768GB"
-        "64" = "MySQL.VM.Standard.E3.64.1024GB"
-    }
-} 
-
-variable "db_cores"     { default = 4 }
