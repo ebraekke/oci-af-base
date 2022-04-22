@@ -1,4 +1,9 @@
 
+module "tls" {
+   source               = "./modules/tls/" 
+   local_dir_prefix     = "${local.inventory}/${var.set_name}_${var.tenant_short_code}"
+}
+
 module "web" {
     source              = "./modules/web"
 
