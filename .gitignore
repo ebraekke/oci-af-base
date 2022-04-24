@@ -19,11 +19,8 @@
 **/*.tfvars
 
 # secret files
-**/*_ssh_private_keys
+**/*_ssh_private_key
 
 # log files
 **/*.log
-
-./0.output/*
-./9.config/*
 
