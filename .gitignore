@@ -24,5 +24,6 @@
 # log files
 **/*.log
 
-./0.output/
-./9.config/
+./0.output/*
+./9.config/*
+
