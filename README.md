@@ -1,4 +1,5 @@
 # oci-af-base
+
 OCI always free base for workshops
 
 
@@ -9,3 +10,12 @@ Not implemented yet, skip for now.
 
 3.application 
 
+# Merging brabches
+
+from develop to main
+```
+git checkout main
+git merge develop 
+
+git push origin
+```

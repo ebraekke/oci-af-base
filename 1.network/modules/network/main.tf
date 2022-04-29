@@ -60,7 +60,7 @@ resource "oci_core_security_list" "lbr" {
   }
 
   egress_security_rules {
-    destination = var.vcn_cidr
+    destination = local.web_subnet_prefix
     protocol    = local.tcp_protocol
 
     tcp_options {
@@ -70,7 +70,7 @@ resource "oci_core_security_list" "lbr" {
   }
 
   egress_security_rules {
-    destination = var.vcn_cidr
+    destination = local.web_subnet_prefix
     protocol    = local.tcp_protocol
 
     tcp_options {
@@ -124,7 +124,7 @@ resource "oci_core_security_list" "bastion" {
   }
 
   dynamic "egress_security_rules" {
-    for_each = [22, 3306, 33060]
+    for_each = [22, 1522]
     content {
       destination = var.vcn_cidr
       protocol    = local.tcp_protocol
@@ -174,19 +174,46 @@ resource "oci_core_security_list" "web" {
   display_name   = "web sec list"
   vcn_id         = oci_core_vcn.this.id
 
-  ingress_security_rules {
-    source   = local.bastion_subnet_prefix
+  # from lbr
+  dynamic "ingress_security_rules" {
+    for_each = [80, 443]
+    content {
+    source   = local.lbr_subnet_prefix
     protocol = local.tcp_protocol
 
-    tcp_options {
-      min = 22
-      max = 22
+      tcp_options {
+        min = ingress_security_rules.value
+        max = ingress_security_rules.value
+      }
     }
   }
 
-  egress_security_rules {
-    destination = local.anywhere
-    protocol    = local.all_protocols
+  # from bastion
+  dynamic "ingress_security_rules" {
+    for_each = [22]
+    content {
+    source   = local.bastion_subnet_prefix
+    protocol = local.tcp_protocol
+
+      tcp_options {
+        min = ingress_security_rules.value
+        max = ingress_security_rules.value
+      }
+    }
+  }
+
+  # to DB
+  dynamic "egress_security_rules" {
+    for_each = [1522]
+    content {
+      destination = var.vcn_cidr
+      protocol    = local.tcp_protocol
+
+      tcp_options {
+        min = egress_security_rules.value
+        max = egress_security_rules.value
+      }
+    }
   }
 }
 
@@ -226,10 +253,25 @@ resource "oci_core_security_list" "db" {
   display_name   = "db sec list"
   vcn_id         = oci_core_vcn.this.id
 
+  # from bastion
   dynamic "ingress_security_rules" {
-    for_each = [3306, 33060]
+    for_each = [1522]
     content {
     source   = local.bastion_subnet_prefix
+    protocol = local.tcp_protocol
+
+      tcp_options {
+        min = ingress_security_rules.value
+        max = ingress_security_rules.value
+      }
+    }
+  }
+
+  # from web
+  dynamic "ingress_security_rules" {
+    for_each = [1522]
+    content {
+    source   = local.web_subnet_prefix
     protocol = local.tcp_protocol
 
       tcp_options {
