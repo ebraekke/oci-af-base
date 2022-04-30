@@ -22,7 +22,9 @@ variable "default_shape"    {}
 ###########################################################################
 # Details for VMs, ssh key vcn and subnet
 ###########################################################################
-variable "ssh_public_key"   {}
+variable "ssh_public_key"   {
+    description="SSH public key to be populated by desired mechanism"
+}
 
 variable "db_subnet_ocid"    {
     description = "subnet for teh db tier"
@@ -37,10 +39,9 @@ variable "vcn_ocid" {
     description = "the vcn"
 }
 
-variable "super_user"       { default = "ubuntu" }
+variable "super_user"       { default = "opc" }
 
 variable "web_image_ocid"   {}
-variable "db_image_ocid"    {}
 
 ###########################################################################
 # Details related to account/identity (provider.tf)

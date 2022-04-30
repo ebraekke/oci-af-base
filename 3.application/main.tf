@@ -19,4 +19,6 @@ module "web" {
     faldom_count        = local.faldom_count 
     subnet_ocid         = var.web_subnet_ocid
     image_ocid          = var.web_image_ocid
+    local_dir_prefix    = "${local.inventory}/${var.set_name}_${var.tenant_short_code}"
+    super_user          = var.super_user
 }

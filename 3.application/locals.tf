@@ -6,7 +6,7 @@ locals {
 
   # host creation helpers
   ssh_jump_keys = split("\n", file(var.authorized_keys_path)) 
-  ssh_key       = var.ssh_public_key
+  ssh_key       = module.tls.ssh_public_key
 
   _cloud_init_plain_bastion = templatefile("${path.module}/templates/bastion.tpl", {ssh_key = local.ssh_key, super_user = var.super_user, ssh_jump_keys = local.ssh_jump_keys})
   user_data_base64_bastion  = base64encode(local._cloud_init_plain_bastion)

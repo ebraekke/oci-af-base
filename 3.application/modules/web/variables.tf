@@ -11,3 +11,5 @@ variable "faldom_list"      {}
 variable "faldom_count"     {}
 variable "subnet_ocid"      {}
 variable "image_ocid"       {}
+variable "local_dir_prefix" {}
+variable "super_user"       {}    
