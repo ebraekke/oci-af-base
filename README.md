@@ -10,10 +10,10 @@ Not implemented yet, skip for now.
 
 3.application 
 
-# Merging brabches
+# Merging branches
 
 from develop to main
-```
+``
 git checkout main
 git merge develop 
 

@@ -2,6 +2,8 @@
 #  Local .terraform directories
 **/.terraform/*
 
+**/0.output/*
+
 # vscode
 **/.vscode/*
 
