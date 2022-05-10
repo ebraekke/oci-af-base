@@ -1,0 +1,15 @@
+/*
+** Globals
+*/
+tenant_short_code  = "<alias-of-the-tenant>"
+set_name           = "<the-name-of-the-set>"
+
+/*
+** Provider
+*/
+region             = "<region-short-code>"
+tenancy_ocid       = "<ocid-of-tenant>"
+compartment_ocid   = "<ocid-of-compartment>"
+user_ocid          = "<ocid-of-user>"
+fingerprint        = "<fingerprint>"
+private_key_path   = "<X://The/Full/Path/To/The/File.pem>"

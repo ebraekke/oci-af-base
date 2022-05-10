@@ -1,3 +1,12 @@
 USE: 
+====
+terraform plan --out=network.tfplan --var-file=network.tfvars
 
-terraform plan --out=standard.tfplan --var-file=../9.config/<your-para-file>.tfvars
+
+OUTPUT: 
+=======
+Creates file in `../0.output/` named after variables `tenant_short_code` and `set_name`.
+This file contains ocids of VCNs and subnets in TF variabel format. 
+
+For example: 
+`../0.output/hatest_espenb_network.tfvars`
