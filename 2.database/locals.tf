@@ -16,9 +16,10 @@ resource "random_password" "_password" {
 locals {
 
   # location of outut files
-  inventory    = "${path.module}/../0.output"
-  local_dir_prefix    = "${local.inventory}/${var.set_name}_${var.tenant_short_code}"
-  
+  inventory         = "${path.module}/../0.output"
+  local_dir_prefix  = "${local.inventory}/${var.set_name}_${var.tenant_short_code}"
+  wallet_filename   = "${local.local_dir_prefix}_ADB_Wallet.zip"
+
   # get password once
   password = random_password._password.result
 }
