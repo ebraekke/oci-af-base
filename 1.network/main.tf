@@ -17,6 +17,14 @@ module "bastion" {
     subnet_ocid         = module.network.bastion_subnet_ocid
 }
 
+module "privendpoint" {
+    source              = "./modules/privendpoint"
+    
+    set_name            = var.set_name
+    compartment_ocid    = var.compartment_ocid
+    subnet_ocid         = module.network.bastion_subnet_ocid
+}
+
 /*
 
 module "lb" {
