@@ -2,6 +2,7 @@
 # Parameter file exports
 ###########################################################################
 
+/*
 resource "local_file" "variables_network" {
 
   content = format("       vcn_ocid = \"%s\"\nlbr_subnet_ocid = \"%s\"\nweb_subnet_ocid = \"%s\"\n db_subnet_ocid = \"%s\"\n", 
@@ -9,3 +10,5 @@ resource "local_file" "variables_network" {
 
   filename = "${var.local_dir_prefix}_network.tfvars"
 }
+
+*/

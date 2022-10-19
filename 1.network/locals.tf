@@ -2,7 +2,8 @@
 # variables for readbility in complex statements
 locals {
   # location of outut files
-  inventory    = "${path.module}/../0.output"
+  inventory        = "${path.module}/../0.output"
+  local_dir_prefix = "${local.inventory}/${var.set_name}_${var.tenant_short_code}"
 
 /*
   # host creation helpers

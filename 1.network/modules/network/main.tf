@@ -95,7 +95,6 @@ resource "oci_core_subnet" "lbr" {
   prohibit_public_ip_on_vnic = false
 }
 
-
 # BASTION
 resource "oci_core_route_table" "bastion" {
   compartment_id = var.compartment_ocid
@@ -281,7 +280,6 @@ resource "oci_core_security_list" "db" {
     }
   }
 }
-
 
 resource "oci_core_subnet" "db" {
   cidr_block          = local.db_subnet_prefix
